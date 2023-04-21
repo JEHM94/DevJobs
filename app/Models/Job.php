@@ -19,4 +19,11 @@ class Job extends Model
         'image',
         'user_id'
     ];
+
+    public function salary()
+    {
+         return $this->belongsTo(Salary::class)->select([
+            'salary'
+        ]);
+    }
 }

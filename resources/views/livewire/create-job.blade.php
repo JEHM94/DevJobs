@@ -38,7 +38,7 @@
 
         <!-- Company Name -->
         <div>
-            <x-input-label for="company" :value="__('Company Name')" />
+            <x-input-label for="company" :value="__('Company')" />
             <x-text-input id="company" class="block mt-1 w-full" type="text" wire:model="company" :value="old('company')"
                 placeholder="e.g. Google, Netflix, Udemy" />
             <x-input-error :messages="$errors->get('company')" class="mt-2" />
@@ -54,7 +54,7 @@
 
         <!-- Job Description -->
         <div>
-            <x-input-label for="description" :value="__('Job Description')" />
+            <x-input-label for="description" :value="__('Description')" />
             <textarea wire:model="description" id="description" placeholder="Overall job description, Skills, Experience, etc."
                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full h-32"></textarea>
             <x-input-error :messages="$errors->get('description')" class="mt-2" />

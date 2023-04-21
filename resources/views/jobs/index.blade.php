@@ -10,15 +10,11 @@
 
             @if (session('message'))
                 <div class="bg-green-500 p-2 rounded-lg mb-6 text-white text-center uppercase font-bold">
-                    {{ session('message}') }}
+                    {{ session('message') }}
                 </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __('My Job Offers') }}
-                </div>
-            </div>
+            @livewire('show-jobs')
         </div>
     </div>
 </x-app-layout>
