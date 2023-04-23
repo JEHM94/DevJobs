@@ -3,7 +3,7 @@
 
         @forelse ($jobs as $job)
             <div
-                class="bg-white p-6 mb-4 w-11/12 text-gray-900 rounded-md md:flex md:justify-between md:items-center border hover:border-indigo-500">
+                class="bg-white shadow-md p-6 mb-4 w-11/12 text-gray-900 rounded-md md:flex md:justify-between md:items-center border hover:border-indigo-500">
                 <div class="space-y-2">
                     <a href="#" class="text-xl font-bold">
                         {{ $job->name }}
@@ -29,7 +29,7 @@
                         Applicants
                     </a>
 
-                    <a href="#"
+                    <a href="{{ route('jobs.edit', ['job' => $job->id]) }}"
                         class="flex items-center gap-1 bg-blue-700 py-2 px-4 rounded-lg text-white text-xs text-center font-bold uppercase flex-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">

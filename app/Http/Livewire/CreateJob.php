@@ -54,7 +54,8 @@ class CreateJob extends Component
         ]);
 
         // Redirect to dashboard
-        return redirect()->route('jobs.index')->with('message', 'Job Offer Posted Successfully');
+        return redirect()->route('jobs.index')->with('message', 'The Offer "' . $this->name . '" Was Posted Successfully');
+
     }
 
 

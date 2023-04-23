@@ -19,8 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Jobs
 Route::get('/dashboard', [JobController::class, 'index'])->middleware(['auth', 'verified'])->name('jobs.index');
 Route::get('/jobs/create', [JobController::class, 'create'])->middleware(['auth', 'verified'])->name('jobs.create');
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'verified'])->name('jobs.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

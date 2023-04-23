@@ -9,8 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             @if (session('message'))
-                <div class="bg-green-500 p-2 rounded-lg mb-6 text-white text-center uppercase font-bold">
-                    {{ session('message') }}
+                <div class="flex justify-center mb-6">
+
+                    <p class="shadow-md w-11/12 bg-green-500 p-2 rounded-lg text-white text-center uppercase font-bold">
+                        {{ session('message') }}
+                    </p>
                 </div>
             @endif
 
