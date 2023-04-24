@@ -14,6 +14,7 @@ class JobPolicy
     public function viewAny(User $user): bool
     {
         //
+        return $user->role === 2;
     }
 
     /**
@@ -30,6 +31,7 @@ class JobPolicy
     public function create(User $user): bool
     {
         //
+        return $user->role === 2;
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Models\Salary;
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Support\Carbon;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,7 +42,7 @@ class EditJob extends Component
         $this->salary = $job->salary_id;
         $this->category = $job->category_id;
         $this->company = $job->company;
-        $this->expiration_date = $job->expiration_date;
+        $this->expiration_date = Carbon::parse($job->expiration_date)->format('Y-m-d');
         $this->description = $job->description;
         $this->image = $job->image;
     }

@@ -9,6 +9,9 @@ class Job extends Model
 {
     use HasFactory;
 
+
+    protected $casts = ['expiration_date' => 'date'];
+
     protected $fillable = [
         'name',
         'salary_id',
@@ -22,8 +25,17 @@ class Job extends Model
 
     public function salary()
     {
-         return $this->belongsTo(Salary::class)->select([
+        return $this->belongsTo(Salary::class)->select([
+            'id',
             'salary'
+        ]);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class)->select([
+            'id',
+            'category'
         ]);
     }
 }

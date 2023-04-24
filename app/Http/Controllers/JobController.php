@@ -12,6 +12,9 @@ class JobController extends Controller
      */
     public function index()
     {
+        // Prevents users with 'dev' role to see this page 
+        $this->authorize('viewAny', Job::class);
+
         return view('jobs.index');
     }
 
@@ -20,15 +23,19 @@ class JobController extends Controller
      */
     public function create()
     {
+        // Prevents users with 'dev' role to see this page 
+        $this->authorize('create', Job::class);
         return view('jobs.create');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Job $job)
     {
-        //
+        return view('jobs.show', [
+            'job' => $job
+        ]);
     }
 
     /**

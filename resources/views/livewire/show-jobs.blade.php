@@ -5,7 +5,7 @@
             <div
                 class="bg-white shadow-md p-6 mb-4 w-11/12 text-gray-900 rounded-md md:flex md:justify-between md:items-center border hover:border-indigo-500">
                 <div class="space-y-2">
-                    <a href="#" class="text-xl font-bold">
+                    <a href="{{ route('jobs.show', ['job' => $job->id]) }}" class="text-xl font-bold">
                         {{ $job->name }}
                     </a>
 
@@ -13,7 +13,7 @@
                         <span class="font-bold">{{ $job->company }}</span> {{ $job->salary->salary }}
                     </p>
                     <p class="text-sm text-gray-500 ">
-                        Expiration Date: {{ $job->expiration_date }}
+                        Expiration Date: {{ $job->expiration_date->toFormattedDateString() }}
                     </p>
                 </div>
 

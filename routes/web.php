@@ -19,15 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Jobs
-Route::get('/dashboard', [JobController::class, 'index'])->middleware(['auth', 'verified'])->name('jobs.index');
-Route::get('/jobs/create', [JobController::class, 'create'])->middleware(['auth', 'verified'])->name('jobs.create');
-Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'verified'])->name('jobs.edit');
-
+// Auth
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Jobs
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [JobController::class, 'index'])->name('jobs.index');
+    Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+    Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+});
+
+Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+
 
 require __DIR__ . '/auth.php';
