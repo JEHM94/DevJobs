@@ -47,6 +47,7 @@ class JobPolicy
     public function delete(User $user, Job $job): bool
     {
         //
+        return $user->id === $job->user_id;
     }
 
     /**

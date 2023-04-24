@@ -25,7 +25,7 @@ class CreateJob extends Component
         'salary' => ['required', 'numeric', 'between:1,9'],
         'category' => ['required', 'numeric', 'between:1,7'],
         'company' => ['required', 'string'],
-        'expiration_date' => ['required'],
+        'expiration_date' => ['required', 'date'],
         'description' => ['required', 'string'],
         'image' => ['required', 'image', 'max:1024']
     ];
@@ -55,7 +55,6 @@ class CreateJob extends Component
 
         // Redirect to dashboard
         return redirect()->route('jobs.index')->with('message', 'The Offer "' . $this->name . '" Was Posted Successfully');
-
     }
 
 
