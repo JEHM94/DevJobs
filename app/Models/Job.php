@@ -38,4 +38,9 @@ class Job extends Model
             'category'
         ]);
     }
+
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class);
+    }
 }

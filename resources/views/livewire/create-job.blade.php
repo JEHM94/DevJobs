@@ -76,7 +76,7 @@
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
-        <div class="flex justify-end">
+        <div>
             <x-primary-button>
                 {{ __('Post Job Offer') }}
             </x-primary-button>
