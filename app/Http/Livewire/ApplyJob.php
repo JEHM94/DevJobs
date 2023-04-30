@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Applicant;
+use App\Notifications\NewApplicant;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,13 +16,13 @@ class ApplyJob extends Component
     protected $rules = [
         'resume' => ['required', 'mimes:pdf'],
     ];
-    
+
     use WithFileUploads;
 
     public function mount()
     {
         // Verifies wether the user already applied to the job or not
-        $this->isApplied = $this->job->applicants->where('user_id', auth()->user()->id)->count();
+        $this->isApplied = $this->job->applicants->where('user_id', auth()->user()->id ?? '')->count();
     }
 
     public function apply()
@@ -45,6 +46,13 @@ class ApplyJob extends Component
             'user_id' => auth()->user()->id,
             'resume' => $formData['resume']
         ]);
+
+        $this->job->recruiter->notify(new NewApplicant(
+            $this->job->id,
+            $this->job->name,
+            auth()->user()->id,
+            $this->job->recruiter->name
+        ));
 
         // Updates Livewire
         $this->isApplied = true;

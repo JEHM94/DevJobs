@@ -11,22 +11,45 @@
                 </div>
 
                 @auth()
-                    <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
+                    @can('create', App\Models\Job::class)
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
 
-                        <x-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')">
-                            {{ __('New Job Offering') }}
-                        </x-nav-link>
-                    </div>
+                            <x-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')">
+                                {{ __('New Job Offering') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan
                 @endauth
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth()
+
+                    @can('create', App\Models\Job::class)
+                        <a href="{{ route('notifications.index') }}" data-tooltip-target="tooltip-animation"
+                            class="w-7 h-7 bg-indigo-600 hover:bg-indigo-800 rounded-full flex flex-col justify-center items-center text-sm font-bold text-white">
+                            {{ Auth::user()->unreadNotifications->count() }}
+
+                        </a>
+
+                        <!-- Dark style tooltip -->
+                        <div id="tooltip-animation" role="tooltip"
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            @if (Auth::user()->unreadNotifications->count())
+                                You have <span class="font-bold">{{ Auth::user()->unreadNotifications->count() }}</span>
+                                notifications
+                            @else
+                                You don't have notifications
+                            @endif
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                    @endcan
+
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -98,13 +121,28 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         @auth()
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
-                    {{ __('Dashboard') }}
-                </x-responsive-nav-link>
+                @can('create', App\Models\Job::class)
+                    <x-responsive-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
+                        {{ __('Dashboard') }}
+                    </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')">
-                    {{ __('New Job Offering') }}
-                </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')">
+                        {{ __('New Job Offering') }}
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs(['notifications.index', 'notifications.old'])">
+                        <div class="flex gap-2 items-center">
+                            <p
+                                class="w-7 h-7 bg-indigo-600 hover:bg-indigo-800 rounded-full flex flex-col justify-center items-center text-sm font-bold text-white">
+                                {{ Auth::user()->unreadNotifications->count() }}
+
+                            </p>
+                            <p class="text-base font-medium text-gray-600">
+                                @choice('Notification|Notifications', Auth::user()->unreadNotifications->count())
+                            </p>
+                        </div>
+                    </x-responsive-nav-link>
+                @endcan
             </div>
 
             <!-- Responsive Settings Options -->
@@ -115,7 +153,7 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">
+                    <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
 

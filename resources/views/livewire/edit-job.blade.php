@@ -63,8 +63,11 @@
         <!-- Image -->
         <div>
             <x-input-label for="image" :value="__('Image')" />
-            <x-text-input id="image" class="block mt-1 w-full" type="file" wire:model="newImage"
-                accept="image/*" />
+            {{-- <x-text-input id="image" class="block mt-1 w-full" type="file" wire:model="newImage"
+                accept="image/*" /> --}}
+            <input
+                class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                id="image" type="file" wire:model="newImage" accept="image/*">
 
             <div class="my-5 w-full flex gap-2">
                 <div class="flex-1">

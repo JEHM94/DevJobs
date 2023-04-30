@@ -3,7 +3,8 @@
 
     @if ($isApplied)
         <div class="flex justify-center my-6 w-full">
-            <p class="shadow-md w-11/12 bg-green-100 border-l-4 p-2 border-green-600 text-green-600 text-center uppercase font-bold text-sm">
+            <p
+                class="shadow-md w-11/12 bg-green-100 border-l-4 p-2 border-green-600 text-green-600 text-center uppercase font-bold text-sm">
                 You Applied to "{{ $job->name }}" Successfully. Good Luck!
             </p>
         </div>
@@ -12,8 +13,11 @@
             <div class="mb-4">
                 <x-input-label for="resume" :value="__('Attach your Resume')" />
 
-                <x-text-input id="resume" class="block mt-1 w-full" type="file" wire:model="resume"
-                    accept=".pdf" />
+                {{-- <x-text-input id="resume" class="block mt-1 w-full" type="file" wire:model="resume"
+                    accept=".pdf" /> --}}
+                <input
+                    class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    id="resume" type="file" wire:model="resume" accept=".pdf">
             </div>
             <x-input-error :messages="$errors->get('resume')" class="my-4" />
 

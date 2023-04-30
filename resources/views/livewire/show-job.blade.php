@@ -38,9 +38,11 @@
             </div>
         </div>
 
-        @cannot('create', App\Models\Job::class)
-            @livewire('apply-job', ['job' => $job])
-        @endcannot
+        @auth()
+            @cannot('create', App\Models\Job::class)
+                @livewire('apply-job', ['job' => $job])
+            @endcannot
+        @endauth
 
         @guest()
             <div class="mt-5 bg-gray-50 border border-dashed p-5 text-center">

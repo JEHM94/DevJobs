@@ -43,4 +43,9 @@ class Job extends Model
     {
         return $this->hasMany(Applicant::class);
     }
+
+    public function recruiter()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

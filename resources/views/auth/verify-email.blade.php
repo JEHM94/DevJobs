@@ -17,12 +17,20 @@
         </x-primary-button>
     </form>
 
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
+    <div class="flex justify-around">
+        <a href="{{ route('profile.edit') }}"
+            class="hover:underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-3">
+            {{ __('Show Profile') }}
+        </a>
 
-        <button type="submit"
-            class="hover:underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full justify-center mt-3">
-            {{ __('Log Out') }}
-        </button>
-    </form>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <button type="submit"
+                class="hover:underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full justify-center mt-3">
+                {{ __('Log Out') }}
+            </button>
+        </form>
+    </div>
+
 </x-guest-layout>

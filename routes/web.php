@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // Auth
 Route::middleware('auth')->group(function () {
@@ -26,11 +27,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Jobs
-Route::middleware(['auth', 'verified'])->group(function () {
+
+Route::middleware(['auth', 'verified', 'role.recruiter'])->group(function () {
+    // Jobs
     Route::get('/dashboard', [JobController::class, 'index'])->name('jobs.index');
     Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
     Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+
+    // Notifications
+    Route::get('/notifications', NotificationController::class)->name('notifications.index');
+    Route::get('/notifications/old', [NotificationController::class, 'old'])->name('notifications.old');
 });
 
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
