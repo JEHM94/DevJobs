@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,9 @@ Route::middleware(['auth', 'verified', 'role.recruiter'])->group(function () {
     Route::get('/dashboard', [JobController::class, 'index'])->name('jobs.index');
     Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
     Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+
+    // Show Job Applicants
+    Route::get('/applicants/{job}', [ApplicantController::class, 'index'])->name('applicants.index');
 
     // Notifications
     Route::get('/notifications', NotificationController::class)->name('notifications.index');

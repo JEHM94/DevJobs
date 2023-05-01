@@ -14,4 +14,9 @@ class Applicant extends Model
         'job_id',
         'resume'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

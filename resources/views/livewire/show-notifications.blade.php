@@ -20,7 +20,7 @@
             </div>
 
 
-            <a href="#"
+            <a href="{{ route('applicants.index', ['job' => $notification->data['job_id']]) }}"
                 class="flex justify-center items-center gap-1 bg-indigo-500 mt-5 md:mt-0 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
