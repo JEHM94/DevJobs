@@ -11,13 +11,17 @@
             @if (session('message'))
                 <div class="flex justify-center mb-6">
 
-                    <p class="shadow-md w-11/12 bg-green-100 border-l-4 p-2 border-green-600 text-green-600 text-center uppercase font-bold text-sm">
+                    <p
+                        class="shadow-md w-11/12 bg-green-100 border-l-4 p-2 border-green-600 text-green-600 text-center uppercase font-bold text-sm">
                         {{ session('message') }}
                     </p>
                 </div>
             @endif
 
-            @livewire('show-jobs')
+            @livewire('show-jobs', [
+                'jobs' => $jobs,
+                'home' => false,
+            ])
         </div>
     </div>
 </x-app-layout>

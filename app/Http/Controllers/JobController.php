@@ -15,7 +15,11 @@ class JobController extends Controller
         // Prevents users with 'dev' role to see this page 
         $this->authorize('viewAny', Job::class);
 
-        return view('jobs.index');
+        $jobs = Job::where('user_id', auth()->user()->id)->paginate(10);
+        
+        return view('jobs.index', [
+            'jobs' => $jobs
+        ]);
     }
 
     /**
